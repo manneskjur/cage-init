@@ -1,0 +1,41 @@
+# Every external input of the Windows LCOW initrd, pinned by content. The
+# recipe builds only from these bytes; changing any value changes the
+# initrd's input identity and therefore rebuilds it.
+schema = 2
+
+[hcsshim]
+repository = "https://github.com/microsoft/hcsshim"
+tag = "v0.14.1"
+commit = "fb5aa2e9478c8f5dcaba00601cc7c7d10e1320cd"
+
+[cage_kernel]
+# The cage-kernel release whose Windows LCOW kernel this initrd boots. The
+# initrd carries that kernel's modules, taken from the release's
+# `windows-amd64-lcow-modules.cpio.gz` after its SHA256SUMS and manifest.json
+# match these digests. Move all of them together, to a published release.
+repository = "manneskjur/cage-kernel"
+version = "0.7.2"
+sha256sums_sha256 = "d609c0c0e7aeeb738676bc22c12a9fb1414077a1fa05aa637afee176e37895d6"
+manifest_sha256 = "6fc3c78ee664ea4a5ee24c01aaa6a14b13c701457b190bc77e29d934d6547faa"
+
+# Debian bookworm packages the guest root filesystem needs beyond the build
+# host's own. They are unpacked, never installed: no resolver runs.
+[[debian]]
+package = "busybox-static"
+url = "https://snapshot.debian.org/archive/debian/20261101T000000Z/pool/main/b/busybox/busybox-static_1.35.0-4+deb12u1+b1_amd64.deb"
+sha256 = "3d3fdbe91d4660c873e14b092c213fe81c1da6362daa236eb25d0171eb108744"
+
+[[debian]]
+package = "runc"
+url = "https://snapshot.debian.org/archive/debian/20261101T000000Z/pool/main/r/runc/runc_1.1.5+ds1-1+deb12u1_amd64.deb"
+sha256 = "a00351f8c0318de0b424ecf5cd0fdb69880a89f3511cae4f6fff7de3e57881c5"
+
+[[debian]]
+package = "libkmod2"
+url = "https://snapshot.debian.org/archive/debian/20261101T000000Z/pool/main/k/kmod/libkmod2_30+20221128-1_amd64.deb"
+sha256 = "af63bbbfc15fbd1f254b15c393b3b95b18b18cc81348fc1b4f1c9c34b4d672d7"
+
+[[debian]]
+package = "libkmod-dev"
+url = "https://snapshot.debian.org/archive/debian/20261101T000000Z/pool/main/k/kmod/libkmod-dev_30+20221128-1_amd64.deb"
+sha256 = "5696db8ac005f8a3b4c1a7a1d0b4692e017b7f363301a175bce468fb2bf4d764"

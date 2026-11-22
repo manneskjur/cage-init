@@ -1,0 +1,7 @@
+# The apple/containerization source the macOS initfs is built from. Keep the
+# revision equal to the Containerization package Cage's ContainerKit helper
+# resolves (and cage-kernel's macOS kernel revision): vminitd speaks the
+# protocol of the Containerization release it is built from.
+schema = 1
+url = "https://github.com/apple/containerization.git"
+revision = "d9868bb657fac3b55ed5dcec97c8eb8a08e78bf5"
