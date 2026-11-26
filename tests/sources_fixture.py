@@ -420,7 +420,7 @@ def dwarf_object(directory: str, files: dict[str, bytes]) -> bytes:
     header += _uleb(len(files))
     for name, data in files.items():
         relocated.append((len(header), offsets[name]))
-        header += b"\0\0\0\0" + _uleb(0) + hashlib.md5(data).digest()  # noqa: S324
+        header += b"\0\0\0\0" + _uleb(0) + hashlib.md5(data).digest()
     # unit_length, version, address_size, seg_select_size, header_length, header
     prefix = (5).to_bytes(2, "little") + bytes([8, 0]) + len(header).to_bytes(4, "little")
     start = 4 + len(prefix)

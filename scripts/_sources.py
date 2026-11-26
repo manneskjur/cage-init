@@ -1008,7 +1008,7 @@ def _dwarf_problems(
         for member in opened:
             if member.isfile():
                 data = opened.extractfile(member).read()  # type: ignore[union-attr]
-                digests[member.name.split("/", 1)[-1]] = hashlib.md5(data).hexdigest()  # noqa: S324
+                digests[member.name.split("/", 1)[-1]] = hashlib.md5(data).hexdigest()
     libraries = bundle_files(bundle, {check["path"] for check in checks})
     errors = []
     for check in checks:

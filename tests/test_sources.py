@@ -343,6 +343,6 @@ def test_dwarf_source_digests_are_read_through_relocations() -> None:
         "/home/build-user", {"resources/fts/fts.c": b"a", "/usr/include/x.h": b"b"}
     )
     assert _sources.dwarf_source_files(member) == {
-        "/home/build-user/resources/fts/fts.c": hashlib.md5(b"a").hexdigest(),  # noqa: S324
-        "/usr/include/x.h": hashlib.md5(b"b").hexdigest(),  # noqa: S324
+        "/home/build-user/resources/fts/fts.c": hashlib.md5(b"a").hexdigest(),
+        "/usr/include/x.h": hashlib.md5(b"b").hexdigest(),
     }
